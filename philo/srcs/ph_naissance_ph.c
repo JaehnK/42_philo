@@ -29,6 +29,7 @@ static t_mut	*ft_alloc_mutex(void)
 	ft_create_mutex(&mut->mu_said);
 	ft_create_mutex(&mut->mu_die_chk);
 	ft_create_mutex(&mut->mu_sleep);
+	ft_create_mutex(&mut->mu_witness);
 	return (mut);
 }
 
@@ -84,4 +85,5 @@ void	ft_naissance_philo(t_main *m)
 		pthread_create(m->ph[i]->th, NULL, ft_routine, m->ph[i]);
 		i++;
 	}
+	pthread_create(&m->witness, NULL, ft_witness, (void *) m);
 }

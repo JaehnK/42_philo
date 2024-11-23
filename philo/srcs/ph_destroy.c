@@ -30,6 +30,7 @@ static void	destroy_philos(t_main **m)
 	ssize_t	i;
 
 	i = 0;
+	pthread_join((*m)->witness, NULL);
 	while (i < (*m)->arg->n)
 	{
 		pthread_join(*(*m)->ph[i]->th, NULL);
@@ -46,6 +47,8 @@ static void	destroy_mutex(t_main **m)
 	pthread_mutex_destroy(&(*m)->mut->mu_said);
 	pthread_mutex_destroy(&(*m)->mut->mu_sleep);
 	pthread_mutex_destroy(&(*m)->mut->mu_die_chk);
+	pthread_mutex_destroy(&(*m)->mut->mu_witness);
+	pthread_mutex_destroy(&(*m)->mut->mu_witness_time_chk);
 	free((*m)->mut);
 }
 

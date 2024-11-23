@@ -8,6 +8,7 @@ OBJS_DIR = objs
 SRCS =	ph_main.c \
 		ph_utils.c \
 		ph_init.c \
+		ph_witness.c \
 		ph_naissance_ph.c \
 		ph_routine.c \
 		ph_routine2.c \

@@ -29,7 +29,7 @@ size_t	ft_die_check(t_ph *p)
 	if (ft_get_time() - p->lst_eaten > p->m->arg->death_time)
 		p->die_chk = 1;
 	if (p->m->arg->eat_cnt > 0 && \
-			p->m->arg->eat_cnt <= (ssize_t) p->eaten)
+			p->m->arg->eat_cnt < (ssize_t) p->eaten)
 		p->die_chk = 1;
 	if (p->m->die_monitor)
 		return (ft_if_die_unlock(&p->mut->mu_die_chk, 1));
@@ -63,7 +63,7 @@ void	*ft_routine(void *p)
 	if (ph->m->arg->n == 1)
 	{
 		ft_usleep(ph->m->arg->death_time);
-		ft_philo_said(ph->id, "is dead", p);
+		ft_philo_said(ph->id, "died", p);
 		return (NULL);
 	}
 	if (ph->id % 2 == 1)

@@ -35,6 +35,8 @@ typedef struct s_mut
 	pthread_mutex_t	mu_said;
 	pthread_mutex_t	mu_sleep;
 	pthread_mutex_t	mu_die_chk;
+	pthread_mutex_t	mu_witness;
+	pthread_mutex_t	mu_witness_time_chk;
 }	t_mut;
 
 typedef struct s_ph
@@ -59,6 +61,7 @@ typedef struct s_main
 	t_ph			**ph;
 	t_mut			*mut;
 	pthread_mutex_t	*forks;
+	pthread_t		witness;
 	size_t			die_monitor;
 }	t_main;
 
@@ -68,6 +71,7 @@ int			ft_usleep(long long time);
 int			ft_usleep2(long long time, t_ph *p);
 void		ft_philo_said(size_t idx, char *msg, t_ph *p);
 void		ft_initalisation(int ac, char **av, t_main **m);
+void		*ft_witness(void *arg);
 size_t		ft_die_check(t_ph *p);
 void		ft_naissance_philo(t_main *m);
 size_t		ft_if_die_unlock(pthread_mutex_t *mtx, int flag);
