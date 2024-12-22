@@ -28,10 +28,9 @@ size_t	ft_die_check(t_ph *p)
 		return (ft_if_die_unlock(&p->mut->mu_die_chk, 1));
 	if (ft_get_time() - p->lst_eaten > p->m->arg->death_time)
 		p->die_chk = 1;
-	if (p->m->arg->eat_cnt > 0 && \
-			p->m->arg->eat_cnt < (ssize_t) p->eaten)
-		p->die_chk = 1;
-	if (p->m->die_monitor)
+	if (p->m->die_monitor == 2)
+		return (ft_if_die_unlock(&p->mut->mu_die_chk, 1));
+	if (p->m->die_monitor == 1)
 		return (ft_if_die_unlock(&p->mut->mu_die_chk, 1));
 	flag = p->die_chk;
 	if (flag)

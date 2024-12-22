@@ -1,7 +1,7 @@
 NAME = philo
 HEADR = ./includes/philo.h
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g # -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g
 SRCS_DIR = srcs
 OBJS_DIR = objs
 
@@ -24,7 +24,7 @@ $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 	@echo making philos...
 
-$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(HEADR)
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(HEADR) | $(OBJS_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJS_DIR):
